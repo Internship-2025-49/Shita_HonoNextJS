@@ -1,6 +1,7 @@
 import { serve } from '@hono/node-server'
 import { Hono } from 'hono'
 import { Routes } from './routes/index.js'
+import { handle } from 'hono/vercel';
 
 const app = new Hono().basePath('/api')
 const port = 3000
@@ -11,6 +12,12 @@ serve({
   port
 })
 
-app.route('/posts', Routes)
+app.route('/shita', Routes)
+
+export const GET = handle(app);
+export const POST = handle(app);
+export const PUT = handle(app);
+export const DELETE = handle(app);
 
 export default app
+
